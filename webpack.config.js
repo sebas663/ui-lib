@@ -11,7 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
-    library: '@sebas663/libreria',
+    library: '@sebas663/ui-lib',
     libraryTarget: 'umd',
     umdNamedDefine: true,
     publicPath: '/dist/', 
