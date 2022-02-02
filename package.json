@@ -2,10 +2,12 @@
   "name": "@sebas663/ui-lib",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/main.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "prepare": "yarn build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
