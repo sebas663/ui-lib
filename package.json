@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/main.js",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "prepare": "yarn build",
