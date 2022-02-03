@@ -1,5 +1,5 @@
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 
 /** @type {import('webpack').Configuration} */
@@ -14,7 +14,7 @@ module.exports = {
     library: '@sebas663/ui-lib',
     libraryTarget: 'umd',
     umdNamedDefine: true,
-    publicPath: '/dist/', 
+    publicPath: '/dist/',
   },
   module: {
     rules: [
@@ -25,7 +25,7 @@ module.exports = {
       },
       {
         use: [
-          'style-loader', 
+          'style-loader',
           'css-loader',
           'sass-loader',
         ],
@@ -42,8 +42,6 @@ module.exports = {
     extensions: ['.js', '.ts', '.tsx', '.json'],
   },
   plugins: [
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
   ],
 };
-
-
