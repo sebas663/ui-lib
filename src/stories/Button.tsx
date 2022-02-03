@@ -26,6 +26,7 @@ interface ButtonProps {
 
 /**
  * Primary UI component for user interaction
+ * prueba husky
  */
 export const Button = ({
 	primary = false,
