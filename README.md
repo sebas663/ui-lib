@@ -214,7 +214,9 @@ Contenido de babel.config.json
 }
 ```
 
-Contenido de babel.config.json
+Contenido de webpack.config.js
+
+**_Es importante que en name pongas el nombre de tu libreria_**
 
 ```js
 const path = require('path')
@@ -230,7 +232,7 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'main.js',
-		library: '@sebas663/ui-lib', // tu repo nombre copado
+		library: '@sebas663/ui-lib', // Nombre copado de libreria
 		libraryTarget: 'umd',
 		umdNamedDefine: true,
 		publicPath: '/dist/',
@@ -262,10 +264,10 @@ module.exports = {
 
 ### Modificacion de package.json
 
-Agregar
+**_Es importante que en name pongas el nombre de tu libreria_**
 
 ```json
-"name": "@sebas663/ui-lib", // tu repo nombre copado
+"name": "@sebas663/ui-lib", // Nombre copado de libreria
 "main": "dist/main.js",
 "files": [
     "dist"
