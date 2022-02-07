@@ -304,6 +304,10 @@ yarn add -D eslint
 yarn run eslint --init
 ```
 
+Luego de ejecutar el comando, nos hace unas preguntas para el archivo de configuracion
+
+Seleccionamos **To check syntax, find problems, and enforce code style**
+
 ```sh
 You can also run this command directly using 'npm init @eslint/config'.
 npx: installed 40 in 6.757s
@@ -312,6 +316,8 @@ npx: installed 40 in 6.757s
   To check syntax and find problems
 > To check syntax, find problems, and enforce code style
 ```
+
+Seleccionamos **> JavaScript modules (import/export)**
 
 ```sh
 You can also run this command directly using 'npm init @eslint/config'.
@@ -322,6 +328,8 @@ npx: installed 40 in 6.757s
   CommonJS (require/exports)
   None of these
 ```
+
+Seleccionamos **? Which framework does your project use?** React
 
 ```sh
 You can also run this command directly using 'npm init @eslint/config'.
@@ -335,6 +343,7 @@ npx: installed 40 in 6.757s
 ```
 
 yes
+Seleccionamos **? Does your project use TypeScript? » No / Yes** Yes
 
 ```console
 You can also run this command directly using 'npm init @eslint/config'.
@@ -345,7 +354,7 @@ npx: installed 40 in 6.757s
 ? Does your project use TypeScript? » No / Yes
 ```
 
-node
+Seleccionamos **? Where does your code run? ... (Press <space> to select, <a> to toggle all, <i> to invert selection)** Node
 
 ```sh
 You can also run this command directly using 'npm init @eslint/config'.
@@ -358,6 +367,8 @@ npx: installed 40 in 6.757s
 √ Browser
 √ Node
 ```
+
+Seleccionamos **> Use a popular style guide**
 
 ```sh
 You can also run this command directly using 'npm init @eslint/config'.
@@ -372,7 +383,7 @@ npx: installed 40 in 6.757s
   Answer questions about your style
 ```
 
-Airbnb
+Seleccionamos **> Airbnb: https://github.com/airbnb/javascript**
 
 ```sh
 You can also run this command directly using 'npm init @eslint/config'.
@@ -390,7 +401,7 @@ npx: installed 40 in 6.757s
   XO: https://github.com/xojs/eslint-config-xo
 ```
 
-JavaScript
+Seleccionamos **> JavaScript**
 
 ```sh
 You can also run this command directly using 'npm init @eslint/config'.
@@ -408,7 +419,7 @@ npx: installed 40 in 6.757s
   JSON
 ```
 
-yes
+Seleccionamos **? Would you like to install them now with npm? » No / Yes** Yes
 
 ```sh
 You can also run this command directly using 'npm init @eslint/config'.
@@ -429,7 +440,7 @@ lint-plugin-jsx-a11y@^6.5.1 eslint-plugin-react-hooks@^4.3.0 @typescript-eslint/
 ? Would you like to install them now with npm? » No / Yes
 ```
 
-luego de instalar las dependencias, tambien se crea el archivo **_.eslintrc.js_** con la siguiente estructura:
+Luego de instalar las dependencias, tambien se crea el archivo **.eslintrc.js** con la siguiente estructura:
 
 ```js
 module.exports = {
@@ -457,7 +468,7 @@ Crear **_.eslintignore_** dentro de ui-lib y colocar
 dist/
 ```
 
-Modificar **_.eslintrc.js_** agregando
+Modificar **_.eslintrc.js_** agregando settings y las apagamos algunas rules.
 
 ```js
 settings: {
@@ -484,6 +495,8 @@ rules: {
 		'react/no-unescaped-entities': 0,
 	},
 ```
+
+[Rules de Eslint](https://eslint.org/docs/rules/) para ver que hacen.
 
 ### Configuracion Prettier
 
