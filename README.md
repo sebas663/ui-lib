@@ -37,25 +37,27 @@ proyectos:~$ mkdir ui-lib
 proyectos:~$ cd ui-lib
 ```
 
+Ya dentro de ui-lib vamos a correr los comandos.
+
 ## Creacion del repositorio local
 
 En la terminal ejecutamos
 
 ```sh
-proyectos/ui-lib:~$ git init -b main
+git init -b main
 ```
 
-Agregamos -b main ya que por default git crea la rama como 'master', y nosotros en el remoto la tenemos como 'main'
+Agregamos **_-b main_** ya que por default git crea la rama como **master**, y nosotros en el remoto la tenemos como 'main'
 
 Podes cambiar la rama por default para tus proximos proyectos con el siguiente comando
 
 ```sh
-proyectos:~$ git config --global init.defaultBranch main
+git config --global init.defaultBranch main
 ```
 
 Luego de iniciar git creamos el archivo .gitignore y colocamos dentro del archivo:
 
-```sh
+```js
 node_modules
 dist
 ```
@@ -63,11 +65,11 @@ dist
 Conectamos con el repositorio remoto y comiteamos
 
 ```sh
-ui-libs:~$ git remote add origin https://github.com/sebas663/ui-lib.git
-ui-libs:~$ git pull https://github.com/sebas663/ui-lib.git main
-ui-libs:~$ git add .
-ui-libs:~$ git commit -m "add .gitignore"
-ui-libs:~$ git push --set-upstream origin main
+git remote add origin https://github.com/sebas663/ui-lib.git
+git pull https://github.com/sebas663/ui-lib.git main
+git add .
+git commit -m "add .gitignore"
+git push --set-upstream origin main
 ```
 
 Ya tenemos conectado nuestro repositorio local con el remoto.
@@ -77,7 +79,20 @@ Ya tenemos conectado nuestro repositorio local con el remoto.
 Vamos a crear el proyecto con yarn, le agremos el flag -y para que no nos pregunte nada y genere el package.json con los valores por default.
 
 ```sh
-ui-libs:~$ yarn init -y
+yarn init -y
+```
+
+El comando genera solo el archivo pacjage.json con los siguientes datos:
+
+```json
+{
+	"name": "ui-lib",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://github.com/sebas663/ui-lib.git",
+	"author": "sebas663 <sebastian_escuderoh@hotmail.com>",
+	"license": "MIT"
+}
 ```
 
 Una vez creado el package.json vamos a agregar las dependencias iniciales del proyecto
@@ -96,30 +111,30 @@ Para agregar peerDependencies se ejecuta yarn add -P dependency_1 dependency_2 d
 Agregamos React
 
 ```sh
-ui-libs:~$ yarn add -D react react-dom
-ui-libs:~$ yarn add -P react react-dom
+yarn add -P react react-dom
+yarn add -D react react-dom
 ```
 
 Agregamos Typescript
 
 ```sh
-ui-libs:~$ yarn add typescript @types/node @types/react @types/react-dom
+yarn add typescript @types/node @types/react @types/react-dom
 ```
 
-Crear directorio 'src' dentro de ui-lib y dentro de src crear index.js
+Crear directorio **_src_** dentro de ui-lib y dentro de src crear **_index.js_**
 
 ## Configurar Storybook
 
-El siguiente comando descarga las dependencias de storybook, agrega las configuraciones al proyecto, los scripts para usarlo en package.json y ademas unos componentes de ejemplo que se pueden ver cuando se levanta storybook.
+El siguiente comando descarga las dependencias de [Storybook](https://storybook.js.org/), agrega las configuraciones al proyecto, los scripts para usarlo en package.json y ademas unos componentes de ejemplo que se pueden ver cuando se levanta storybook.
 
 ```sh
-ui-libs:~$ npx sb init
+npx sb init
 ```
 
 Para chequear que esta todo bien, levantamos storybook.
 
 ```sh
-ui-libs:~$ yarn storybook
+yarn storybook
 ```
 
 Despues de chequear que este todo bien, tenemos que exportar los componentes en index.js
@@ -139,19 +154,19 @@ export { Button, Header, Page }
 Para Webpack
 
 ```sh
-ui-libs:~$ yarn add -D webpack webpack-cli clean-webpack-plugin webpack-node-externals
+yarn add -D webpack webpack-cli clean-webpack-plugin webpack-node-externals
 ```
 
 Para Babel
 
 ```sh
-ui-libs:~$ yarn add -D @babel/preset-env @babel/preset-react @babel/plugin-transform-typescript @babel/preset-typescript
+yarn add -D @babel/preset-env @babel/preset-react @babel/plugin-transform-typescript @babel/preset-typescript
 ```
 
 Para css
 
 ```sh
-ui-libs:~$ yarn add -D sass sass-loader style-loader css-loader
+yarn add -D sass sass-loader style-loader css-loader
 ```
 
 ### Creacion de los archivos de configuracion
@@ -268,10 +283,10 @@ Comitear todo lo que no hayas comiteado y con todo esto ya esta listo para poder
 
 ## Utilizacion de libreria
 
-Crear otro proyecto React, luego de crear el proyecto agregar como dependencia la libreria
+Crear otro proyecto React, luego de crear el proyecto agregar como dependencia la libreria que generamos **_ui-lib_**
 
 ```sh
-otro-proyecto-react:~$ yarn add https://github.com/sebas663/ui-lib.git
+yarn add https://github.com/sebas663/ui-lib.git
 ```
 
 Y se pueden utilizar los componentes solo importandolos
@@ -285,22 +300,22 @@ import { Button, Header, Page } from '@sebas663/ui-lib'
 ### Configuracion de Eslint
 
 ```sh
-ui-libs:~$ yarn add -D eslint
-ui-libs:~$ yarn run eslint --init
+yarn add -D eslint
+yarn run eslint --init
 ```
 
 Seba pone los pasos del promp y como queda el config final!!!
 
 Crear .eslintignore dentro de ui-lib y colocar
 
-```sh
+```js
 dist/
 ```
 
 ### Configuracion Prettier
 
 ```sh
-ui-libs:~$ yarn add -D eslint-config-prettier prettier
+yarn add -D eslint-config-prettier prettier
 ```
 
 Crear .prettierrc.json dentro de ui-lib y colocar
@@ -317,7 +332,7 @@ Crear .prettierrc.json dentro de ui-lib y colocar
 
 Crear .prettierignore dentro de ui-lib y colocar
 
-```sh
+```js
 dist
 ```
 
@@ -339,7 +354,7 @@ Agregar los scripts en package.json
 El siguiente comando genera la configuracion de husky lint staged y agrega en package.json el atributo "lint-staged"
 
 ```sh
-ui-libs:~$ npx mrm@2 lint-staged
+npx mrm@2 lint-staged
 ```
 
 Modificar "lint-staged", tiene que quedar asi
