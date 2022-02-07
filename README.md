@@ -304,12 +304,185 @@ yarn add -D eslint
 yarn run eslint --init
 ```
 
-Seba pone los pasos del promp y como queda el config final!!!
+```sh
+You can also run this command directly using 'npm init @eslint/config'.
+npx: installed 40 in 6.757s
+? How would you like to use ESLint? ...
+  To check syntax only
+  To check syntax and find problems
+> To check syntax, find problems, and enforce code style
+```
 
-Crear .eslintignore dentro de ui-lib y colocar
+```sh
+You can also run this command directly using 'npm init @eslint/config'.
+npx: installed 40 in 6.757s
+√ How would you like to use ESLint? · style
+? What type of modules does your project use? ...
+> JavaScript modules (import/export)
+  CommonJS (require/exports)
+  None of these
+```
+
+```sh
+You can also run this command directly using 'npm init @eslint/config'.
+npx: installed 40 in 6.757s
+√ How would you like to use ESLint? · style
+√ What type of modules does your project use? · esm
+? Which framework does your project use? ...
+> React
+  Vue.js
+  None of these
+```
+
+yes
+
+```console
+You can also run this command directly using 'npm init @eslint/config'.
+npx: installed 40 in 6.757s
+√ How would you like to use ESLint? · style
+√ What type of modules does your project use? · esm
+√ Which framework does your project use? · react
+? Does your project use TypeScript? » No / Yes
+```
+
+node
+
+```sh
+You can also run this command directly using 'npm init @eslint/config'.
+npx: installed 40 in 6.757s
+√ How would you like to use ESLint? · style
+√ What type of modules does your project use? · esm
+√ Which framework does your project use? · react
+√ Does your project use TypeScript? · No / Yes
+? Where does your code run? ...  (Press <space> to select, <a> to toggle all, <i> to invert selection)
+√ Browser
+√ Node
+```
+
+```sh
+You can also run this command directly using 'npm init @eslint/config'.
+npx: installed 40 in 6.757s
+√ How would you like to use ESLint? · style
+√ What type of modules does your project use? · esm
+√ Which framework does your project use? · react
+√ Does your project use TypeScript? · No / Yes
+√ Where does your code run? · browser
+? How would you like to define a style for your project? ...
+> Use a popular style guide
+  Answer questions about your style
+```
+
+Airbnb
+
+```sh
+You can also run this command directly using 'npm init @eslint/config'.
+npx: installed 40 in 6.757s
+√ How would you like to use ESLint? · style
+√ What type of modules does your project use? · esm
+√ Which framework does your project use? · react
+√ Does your project use TypeScript? · No / Yes
+√ Where does your code run? · browser
+√ How would you like to define a style for your project? · guide
+? Which style guide do you want to follow? ...
+> Airbnb: https://github.com/airbnb/javascript
+  Standard: https://github.com/standard/standard
+  Google: https://github.com/google/eslint-config-google
+  XO: https://github.com/xojs/eslint-config-xo
+```
+
+JavaScript
+
+```sh
+You can also run this command directly using 'npm init @eslint/config'.
+npx: installed 40 in 6.757s
+√ How would you like to use ESLint? · style
+√ What type of modules does your project use? · esm
+√ Which framework does your project use? · react
+√ Does your project use TypeScript? · No / Yes
+√ Where does your code run? · browser
+√ How would you like to define a style for your project? · guide
+√ Which style guide do you want to follow? · airbnb
+? What format do you want your config file to be in? ...
+> JavaScript
+  YAML
+  JSON
+```
+
+yes
+
+```sh
+You can also run this command directly using 'npm init @eslint/config'.
+npx: installed 40 in 6.757s
+√ How would you like to use ESLint? · style
+√ What type of modules does your project use? · esm
+√ Which framework does your project use? · react
+√ Does your project use TypeScript? · No / Yes
+√ Where does your code run? · browser
+√ How would you like to define a style for your project? · guide
+√ Which style guide do you want to follow? · airbnb
+√ What format do you want your config file to be in? · JavaScript
+Checking peerDependencies of eslint-config-airbnb@latest
+The config that you ve selected requires the following dependencies:
+
+eslint-plugin-react@^7.28.0 @typescript-eslint/eslint-plugin@latest eslint-config-airbnb@latest eslint@^7.32.0 || ^8.2.0 eslint-plugin-import@^2.25.3 es
+lint-plugin-jsx-a11y@^6.5.1 eslint-plugin-react-hooks@^4.3.0 @typescript-eslint/parser@latest
+? Would you like to install them now with npm? » No / Yes
+```
+
+luego de instalar las dependencias, tambien se crea el archivo **_.eslintrc.js_** con la siguiente estructura:
+
+```js
+module.exports = {
+	env: {
+		browser: true,
+		es2021: true,
+	},
+	extends: ['plugin:react/recommended', 'airbnb'],
+	parser: '@typescript-eslint/parser',
+	parserOptions: {
+		ecmaFeatures: {
+			jsx: true,
+		},
+		ecmaVersion: 'latest',
+		sourceType: 'module',
+	},
+	plugins: ['react', '@typescript-eslint'],
+	rules: {},
+}
+```
+
+Crear **_.eslintignore_** dentro de ui-lib y colocar
 
 ```js
 dist/
+```
+
+Modificar **_.eslintrc.js_** agregando
+
+```js
+settings: {
+		'import/resolver': {
+			node: {
+				extensions: ['.js', '.jsx', '.ts', '.tsx'],
+				paths: ['./src'],
+			},
+		},
+	},
+rules: {
+		'import/extensions': ['error', 'never'],
+		'react/prop-types': 'off',
+		'react/require-default-props': 'off',
+		'import/prefer-default-export': 'off',
+		'react-hooks/rules-of-hooks': 'off',
+		'react-hooks/exhaustive-deps': 'off',
+		'react/function-component-definition': 'off',
+		'react/jsx-props-no-spreading': 'off',
+		'react/jsx-filename-extension': 'off',
+		'object-curly-newline': 'off',
+		'import/no-extraneous-dependencies': 'off',
+		'react/jsx-one-expression-per-line': 0,
+		'react/no-unescaped-entities': 0,
+	},
 ```
 
 ### Configuracion Prettier
@@ -318,7 +491,7 @@ dist/
 yarn add -D eslint-config-prettier prettier
 ```
 
-Crear .prettierrc.json dentro de ui-lib y colocar
+Crear **_.prettierrc.json_** dentro de ui-lib y colocar
 
 ```json
 {
@@ -330,7 +503,7 @@ Crear .prettierrc.json dentro de ui-lib y colocar
 }
 ```
 
-Crear .prettierignore dentro de ui-lib y colocar
+Crear **_.prettierignore_** dentro de ui-lib y colocar
 
 ```js
 dist
