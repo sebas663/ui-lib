@@ -216,7 +216,7 @@ Contenido de babel.config.json
 
 Contenido de webpack.config.js
 
-**_Es importante que en name pongas el nombre de tu libreria_**
+**_Es importante que en library pongas el nombre de tu libreria_**
 
 ```js
 const path = require('path')
