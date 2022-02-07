@@ -329,7 +329,7 @@ npx: installed 40 in 6.757s
   None of these
 ```
 
-Seleccionamos **? Which framework does your project use?** React
+Seleccionamos **React**
 
 ```sh
 You can also run this command directly using 'npm init @eslint/config'.
@@ -342,8 +342,7 @@ npx: installed 40 in 6.757s
   None of these
 ```
 
-yes
-Seleccionamos **? Does your project use TypeScript? » No / Yes** Yes
+Seleccionamos **Yes**
 
 ```console
 You can also run this command directly using 'npm init @eslint/config'.
@@ -354,7 +353,7 @@ npx: installed 40 in 6.757s
 ? Does your project use TypeScript? » No / Yes
 ```
 
-Seleccionamos **? Where does your code run? ... (Press <space> to select, <a> to toggle all, <i> to invert selection)** Node
+Seleccionamos **Node**
 
 ```sh
 You can also run this command directly using 'npm init @eslint/config'.
@@ -419,7 +418,7 @@ npx: installed 40 in 6.757s
   JSON
 ```
 
-Seleccionamos **? Would you like to install them now with npm? » No / Yes** Yes
+Seleccionamos **Yes**
 
 ```sh
 You can also run this command directly using 'npm init @eslint/config'.
@@ -440,7 +439,7 @@ lint-plugin-jsx-a11y@^6.5.1 eslint-plugin-react-hooks@^4.3.0 @typescript-eslint/
 ? Would you like to install them now with npm? » No / Yes
 ```
 
-Luego de instalar las dependencias, tambien se crea el archivo **.eslintrc.js** con la siguiente estructura:
+Luego de instalar las dependencias, tambien se crea el archivo **_.eslintrc.js_** con la siguiente estructura:
 
 ```js
 module.exports = {
