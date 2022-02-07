@@ -467,7 +467,7 @@ Crear **_.eslintignore_** dentro de ui-lib y colocar
 dist/
 ```
 
-Modificar **_.eslintrc.js_** agregando settings y las apagamos algunas rules.
+Modificar **_.eslintrc.js_** agregando settings y apagamos algunas rules.
 
 ```js
 settings: {
@@ -521,7 +521,7 @@ Crear **_.prettierignore_** dentro de ui-lib y colocar
 dist
 ```
 
-Agregar 'prettier' en extends de .eslintrc.js
+Agregar **_prettier_** en atributo extends de **.eslintrc.js**
 
 ```js
 extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
@@ -542,7 +542,7 @@ El siguiente comando genera la configuracion de husky lint staged y agrega en pa
 npx mrm@2 lint-staged
 ```
 
-Modificar "lint-staged", tiene que quedar asi
+Modificar **lint-staged**, tiene que quedar asi
 
 ```json
 "lint-staged": {
