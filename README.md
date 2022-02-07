@@ -1,6 +1,10 @@
-# Ejemplo de creacion de libreria de componentes ui
+# Libreria de componentes ui
 
-Los componentes estan hechos con React y Typescript
+Este es un proyecto React para crear componentes ui reutilizables en otros proyectos.
+
+Es un proyecto contruido con [Typescript](https://www.typescriptlang.org/), [Storybook](https://storybook.js.org/) para la presentación de los componentes, [Webpack](https://webpack.js.org/) para el bundle, [Babel](https://babeljs.io/) para compatibilidad de navegadores.
+
+Ademas vamos a configurar [Eslint](https://eslint.org/) y [Prettier](https://prettier.io/) para para aplicar reglas de escritura de codigo y [Husky](https://typicode.github.io/husky/#/) para chequear esas reglas en cada commit.
 
 Se van a seguir los siguientes pasos:
 
@@ -28,7 +32,7 @@ Se puede seguir este instructivo si no sabes como crear el repositorio [creacion
 
 Abrir una terminal en el directorio donde vas a crear el proyecto
 
-```console
+```sh
 proyectos:~$ mkdir ui-lib
 proyectos:~$ cd ui-lib
 ```
@@ -37,7 +41,7 @@ proyectos:~$ cd ui-lib
 
 En la terminal ejecutamos
 
-```console
+```sh
 proyectos/ui-lib:~$ git init -b main
 ```
 
@@ -45,20 +49,20 @@ Agregamos -b main ya que por default git crea la rama como 'master', y nosotros 
 
 Podes cambiar la rama por default para tus proximos proyectos con el siguiente comando
 
-```console
+```sh
 proyectos:~$ git config --global init.defaultBranch main
 ```
 
 Luego de iniciar git creamos el archivo .gitignore y colocamos dentro del archivo:
 
-```console
+```sh
 node_modules
 dist
 ```
 
 Conectamos con el repositorio remoto y comiteamos
 
-```console
+```sh
 ui-libs:~$ git remote add origin https://github.com/sebas663/ui-lib.git
 ui-libs:~$ git pull https://github.com/sebas663/ui-lib.git main
 ui-libs:~$ git add .
@@ -72,16 +76,16 @@ Ya tenemos conectado nuestro repositorio local con el remoto.
 
 Vamos a crear el proyecto con yarn, le agremos el flag -y para que no nos pregunte nada y genere el package.json con los valores por default.
 
-```console
+```sh
 ui-libs:~$ yarn init -y
 ```
 
 Una vez creado el package.json vamos a agregar las dependencias iniciales del proyecto
 vamos a tener tres tipos de dependencias:
 
-1. dependencies son las necesarias para que funcione la libreria y que el proyecto que importa esta libreria NO las tiene como dependencia.
-2. devDependencies son las necesarias para construir la libreria.
-3. peerDependencies son las necesarias para que funcione la libreria y que el proyecto que importa esta libreria las tiene como dependencia.
+1. dependencies: son las necesarias para que funcione la libreria y que el proyecto que importa esta libreria NO las tiene como dependencia.
+2. devDependencies: son las necesarias para construir la libreria.
+3. peerDependencies: son las necesarias para que funcione la libreria y que el proyecto que importa esta libreria las tiene como dependencia.
 
 Para agregar dependencies se ejecuta yarn add dependency_1 dependency_2 dependency_n
 
@@ -91,14 +95,14 @@ Para agregar peerDependencies se ejecuta yarn add -P dependency_1 dependency_2 d
 
 Agregamos React
 
-```console
+```sh
 ui-libs:~$ yarn add -D react react-dom
 ui-libs:~$ yarn add -P react react-dom
 ```
 
 Agregamos Typescript
 
-```console
+```sh
 ui-libs:~$ yarn add typescript @types/node @types/react @types/react-dom
 ```
 
@@ -108,28 +112,24 @@ Crear directorio 'src' dentro de ui-lib y dentro de src crear index.js
 
 El siguiente comando descarga las dependencias de storybook, agrega las configuraciones al proyecto, los scripts para usarlo en package.json y ademas unos componentes de ejemplo que se pueden ver cuando se levanta storybook.
 
-```console
+```sh
 ui-libs:~$ npx sb init
 ```
 
 Para chequear que esta todo bien, levantamos storybook.
 
-```console
+```sh
 ui-libs:~$ yarn storybook
 ```
 
 Despues de chequear que este todo bien, tenemos que exportar los componentes en index.js
 
-```console
-import { Button } from "./stories/Button";
-import { Header } from "./stories/Header";
-import { Page } from "./stories/Page";
+```js
+import { Button } from './stories/Button'
+import { Header } from './stories/Header'
+import { Page } from './stories/Page'
 
-export {
-    Button,
-    Header,
-    Page
-}
+export { Button, Header, Page }
 ```
 
 ## Configuracion de Webpack
@@ -138,19 +138,19 @@ export {
 
 Para Webpack
 
-```console
+```sh
 ui-libs:~$ yarn add -D webpack webpack-cli clean-webpack-plugin webpack-node-externals
 ```
 
 Para Babel
 
-```console
+```sh
 ui-libs:~$ yarn add -D @babel/preset-env @babel/preset-react @babel/plugin-transform-typescript @babel/preset-typescript
 ```
 
 Para css
 
-```console
+```sh
 ui-libs:~$ yarn add -D sass sass-loader style-loader css-loader
 ```
 
@@ -164,7 +164,7 @@ Para configurar webpack con typescript tenemos que crear tres archivos de config
 
 Contenido de tsconfig.json
 
-```console
+```json
 {
 	"compilerOptions": {
 		"target": "es5",
@@ -185,12 +185,11 @@ Contenido de tsconfig.json
 	},
 	"include": ["src"]
 }
-
 ```
 
 Contenido de babel.config.json
 
-```console
+```json
 {
 	"presets": [
 		["@babel/preset-env"],
@@ -202,7 +201,7 @@ Contenido de babel.config.json
 
 Contenido de babel.config.json
 
-```console
+```js
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
@@ -244,14 +243,13 @@ module.exports = {
 	},
 	plugins: [new CleanWebpackPlugin()],
 }
-
 ```
 
 ### Modificacion de package.json
 
 Agregar
 
-```console
+```json
 "name": "@sebas663/ui-lib", // tu repo nombre copado
 "main": "dist/main.js",
 "files": [
@@ -261,7 +259,7 @@ Agregar
 
 Dentro de scripts agregar
 
-```console
+```json
 "build": "webpack --config webpack.config.js",
 "prepare": "yarn build",
 ```
@@ -272,21 +270,21 @@ Comitear todo lo que no hayas comiteado y con todo esto ya esta listo para poder
 
 Crear otro proyecto React, luego de crear el proyecto agregar como dependencia la libreria
 
-```console
+```sh
 otro-proyecto-react:~$ yarn add https://github.com/sebas663/ui-lib.git
 ```
 
 Y se pueden utilizar los componentes solo importandolos
 
-```console
-import { Button, Header, Page } from '@sebas663/ui-lib';
+```js
+import { Button, Header, Page } from '@sebas663/ui-lib'
 ```
 
 ## Bonus Eslint Prettier Husky
 
 ### Configuracion de Eslint
 
-```console
+```sh
 ui-libs:~$ yarn add -D eslint
 ui-libs:~$ yarn run eslint --init
 ```
@@ -295,19 +293,19 @@ Seba pone los pasos del promp y como queda el config final!!!
 
 Crear .eslintignore dentro de ui-lib y colocar
 
-```console
+```sh
 dist/
 ```
 
 ### Configuracion Prettier
 
-```console
+```sh
 ui-libs:~$ yarn add -D eslint-config-prettier prettier
 ```
 
 Crear .prettierrc.json dentro de ui-lib y colocar
 
-```console
+```json
 {
 	"singleQuote": true,
 	"useTabs": true,
@@ -319,19 +317,19 @@ Crear .prettierrc.json dentro de ui-lib y colocar
 
 Crear .prettierignore dentro de ui-lib y colocar
 
-```console
+```sh
 dist
 ```
 
 Agregar 'prettier' en extends de .eslintrc.js
 
-```console
+```js
 extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
 ```
 
 Agregar los scripts en package.json
 
-```console
+```json
 "prettier": "prettier --write .",
 "test:prettier": "prettier --check ."
 ```
@@ -340,13 +338,13 @@ Agregar los scripts en package.json
 
 El siguiente comando genera la configuracion de husky lint staged y agrega en package.json el atributo "lint-staged"
 
-```console
+```sh
 ui-libs:~$ npx mrm@2 lint-staged
 ```
 
 Modificar "lint-staged", tiene que quedar asi
 
-```console
+```json
 "lint-staged": {
 	"*.{js,jsx,ts,tsx}": "eslint --cache --fix",
 	"*.{js,jsx,ts,tsx,css,md}": "prettier --write"
