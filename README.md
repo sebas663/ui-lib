@@ -497,6 +497,16 @@ rules: {
 	},
 ```
 
+Agregar en **_scripts_** de package.json
+
+```js
+"scripts": {
+		...resto de scripts
+		"lint": "eslint .",
+		"lint:fix": "eslint  --cache --fix",
+	}
+```
+
 [Rules de Eslint](https://eslint.org/docs/rules/) para ver que hacen.
 
 ### Configuracion Prettier
